@@ -1,19 +1,22 @@
 #[macro_use]
 extern crate nom;
 
-mod parser;
+pub mod ast;
+pub mod parser;
 
 use std::fs::File;
 use std::io::Read;
 
-fn read_content(path: &str) -> std::io::Result<String> {
+fn read_content(path: &str) -> std::io::Result<Vec<u8>> {
     let mut file = File::open(path)?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
+    let mut contents = Vec::new();
+    file.read_to_end(&mut contents)?;
 
     Ok(contents)
 }
 
-pub fn translate(unit: &str) -> &[u8] {
-    &[]
+pub fn translate(unit: &str) -> std::io::Result<Vec<u8>> {
+    let source = read_content(unit)?;
+
+    Ok(source)
 }

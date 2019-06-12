@@ -1,10 +1,10 @@
-use super::*;
+use crate::ast;
 
 // matches return statements
 named!(
     pub p_return_statement<ast::Statement>,
     map!(
-        ws!(tuple!(tag!("return"), common::p_rvalue, tag!(";"))),
+        ws!(tuple!(tag!("return"), super::common::p_rvalue, tag!(";"))),
         |(_, v, _)| { ast::Statement::Return(v) }
     )
 );
