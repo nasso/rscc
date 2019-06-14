@@ -49,8 +49,8 @@ named!(
             not!(p_reserved)
                 // must start with alphabetic, but can then contain any alphanumeric char, + the _
                 >> res: recognize!(tuple!(
-                    take_while1!(nom::is_alphabetic),
-                    take_while!(|c: u8| c == b'_' || nom::is_alphanumeric(c))
+                    take_while1!(nom::character::is_alphabetic),
+                    take_while!(|c: u8| c == b'_' || nom::character::is_alphanumeric(c))
                 ))
                 >> (res)
         ),
@@ -96,9 +96,9 @@ named!(
     pub p_decimal_constant,
     recognize!(tuple!(
         // starts with a non-zero decimal digit
-        take_while1!(|c: u8| c != b'0' && nom::is_digit(c)),
+        take_while1!(|c: u8| c != b'0' && nom::character::is_digit(c)),
         // zero or more decimal digits
-        take_while!(nom::is_digit)
+        take_while!(nom::character::is_digit)
     ))
 );
 

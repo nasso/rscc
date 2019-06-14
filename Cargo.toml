@@ -5,4 +5,4 @@ authors = ["nasso <nassomails@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-nom = "4.2.3"
+nom = "5.0.0-beta2"
