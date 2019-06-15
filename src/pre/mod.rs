@@ -80,7 +80,7 @@ pub fn process(unit_path: &str) -> Result<Vec<u8>, PreprocessingError> {
     escape_newlines(&mut source);
 
     // Phase 3
-    let pp_tokens = parse::parse_preprocessing_tokens::<VerboseError<&str>>(&source)
+    let pp_tokens = parse::parse_preprocessing_file::<VerboseError<&str>>(&source)
         // we need to wrap up a tuple containing the input data if there's any error
         .or_else(|e| Err((&source[..], e)))?;
 
